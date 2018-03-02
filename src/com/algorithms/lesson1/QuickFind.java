@@ -1,6 +1,7 @@
 package com.algorithms.lesson1;
 
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
 
 //Union-Find , Quick find implementation - greedy/eager way
 // Union operation is an equivalence relation
@@ -8,12 +9,14 @@ import java.util.Scanner;
 public class QuickFind {
 
     int[] id;
+    int connectedComponents;
 
     public QuickFind(int n) {
         id = new int[n];
         for (int i = 0; i < n; i++) {
             id[i] = i;
         }
+        connectedComponents=n;
 
     }
 
@@ -37,40 +40,42 @@ public class QuickFind {
 
         }
         id[p] = id[q];
-
+        connectedComponents--;
     }
 
     public void printlist() {
         for (int i = 0; i < id.length; i++) {
             System.out.print(id[i] + ",");
         }
+        System.out.println("\nconnected components="+connectedComponents);
 
     }
 
+    public boolean allConnected(){
+        return connectedComponents==1;
+    }
+
     public static void main(String[] args) {
-        System.out.println("Enter no of objects");
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        QuickFind quickFind = new QuickFind(n);
-        boolean more = true;
-        while (more) {
-            System.out.println("Enter pair:");
-            String pair = scanner.next();
-            String[] nums = pair.split(",");
+
+        QuickFind quickFind = new QuickFind(10);
+        List<String> pairs = Arrays.asList("4,3", "3,8", "6,5", "9,4", "2,1", "8,9", "5,0", "7,2", "6,1");
+        for (String item : pairs) {
+
+            String[] nums = item.split(",");
             int p = new Integer(nums[0]).intValue();
             int q = new Integer(nums[1]).intValue();
             if (quickFind.connected(p, q)) {
-                System.out.println("Connection exists");
+                System.out.println(p + " " + q + " Connection exists");
             } else {
                 quickFind.union(p, q);
                 System.out.println(p + " " + q + " connected");
             }
             quickFind.printlist();
-            System.out.println("more ?");
-            more = scanner.next().equals("y");
+
         }
         quickFind.printlist();
+        System.out.println("All nodes connected="+quickFind.allConnected());
     }
-
+//output: 1,1,1,8,8,1,1,1,8,8
 }
 
