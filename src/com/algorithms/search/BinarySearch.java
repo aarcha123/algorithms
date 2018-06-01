@@ -1,6 +1,7 @@
 package com.algorithms.search;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Binary search using array - non recursive
@@ -20,6 +21,8 @@ public class BinarySearch {
         for (int i = 0; i < n; i++) {
             numarray[i] = scanner.nextInt();
         }
+        //sort array in asc order
+        Arrays.sort(numarray);
     }
 
     int search(int key) {
