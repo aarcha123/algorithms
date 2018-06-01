@@ -1,3 +1,2 @@
 # algorithms
-
-coursera algorithm course
+ algorithm course
