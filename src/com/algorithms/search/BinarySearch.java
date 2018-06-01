@@ -22,8 +22,8 @@ public class BinarySearch {
         }
     }
 
-    boolean search(int key) {
-        boolean found = false;
+    int search(int key) {
+
         int begin = 0, end = n;
         int mid = (begin + end) / 2;
         while (begin!=end) {
@@ -32,10 +32,10 @@ public class BinarySearch {
             else if (key > numarray[mid])
                 begin = mid + 1;
             else
-                return found = true;
+                return mid;
             mid = (begin + end) / 2;
         }
-        return found;
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -44,6 +44,10 @@ public class BinarySearch {
         BinarySearch binarySearch = new BinarySearch(scanner.nextInt());
         binarySearch.init();
         System.out.println("item to search:");
-        System.out.println("found =" + binarySearch.search(scanner.nextInt()));
+        int index=binarySearch.search(scanner.nextInt());
+        if(index!=-1)
+         System.out.println("found at index=" + index );
+        else  
+            System.out.println("not found");
     }
 }
