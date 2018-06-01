@@ -26,7 +26,7 @@ public class BinarySearch {
         boolean found = false;
         int begin = 0, end = n;
         int mid = (begin + end) / 2;
-        while (mid >= 0) {
+        while (begin!=end) {
             if (key < numarray[mid])
                 end = mid - 1;
             else if (key > numarray[mid])
