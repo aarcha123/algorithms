@@ -9,16 +9,14 @@ import java.util.Arrays;
 public class BinarySearch {
     private static Scanner scanner = new Scanner(System.in);
     private int[] numarray;
-    private int n;
 
     BinarySearch(int n) {
-        this.n = n;
         numarray = new int[n];
     }
 
     void init() {
         System.out.println("Enter number data set:");
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < numarray.length; i++) {
             numarray[i] = scanner.nextInt();
         }
         //sort array in asc order
@@ -27,9 +25,10 @@ public class BinarySearch {
 
     int search(int key) {
 
-        int begin = 0, end = n;
+        int begin = 0, end = numarray.length;
+        // https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
         int mid = (begin + end) / 2;
-        while (begin!=end) {
+        while (begin<=end) {
             if (key < numarray[mid])
                 end = mid - 1;
             else if (key > numarray[mid])
